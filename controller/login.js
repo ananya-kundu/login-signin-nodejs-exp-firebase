@@ -1,28 +1,29 @@
 var express = require('express'),
 app = express(),
-	router = express.Router(),
-	login = require('../model/login');
-  loginObj = new login();
-  console.log("loginObj",loginObj);
+	router = express.Router();
+	 loginObj = require('../model/login');
+   login = new loginObj();
+    console.log("loginObj",loginObj);
+	var	firebase = require('../config.js');
+	    ref = firebase.database().ref();
 
   router.post('/login', function(req,res){
 
-    try
-    {
-      var loginUserData = {
-                         email : req.body.email,
-                         password : req.body.password,
-                   };
-      if(!loginObj.isValidation(loginUserData)) {
-         res.send({"status":false,"message":"login unsuccessfull"});
-       }else{
+				var email = req.body.email;
+				var password = req.body.password;
+				console.log(email);
+				console.log(password);
 
-              loginObj.loginCheck(loginUserData);
-              res.send({"status":true,"message":"Login Successfull"});
-            }
-    } catch (e)
-    {
-
-    }
-    	});
-    module.exports = router;
+				var data={
+						email:email,
+						password:password
+				}
+				login.loginCheck(data, function(err,result){
+					if(err){
+							res.send({"status": false,"message": error.message});					}
+					else {
+						 	res.send({"status": true,"message": "Successfully login"});
+					}
+	});
+ });
+	module.exports = router;

@@ -1,22 +1,21 @@
+var firebase = require('../config.js'),
+  usersRef = firebase.database().ref("users");
 
-  var	firebase = require('../config.js'),
-  	usersRef = firebase.database().ref("users");
-
-function signupObj(){
-	// return;
+function signupObj() {
+  // return;
 }
 
-signupObj.prototype.saveData= function(userData){
-  // console.log(saveUser);
+signupObj.prototype.saveData = function(userData) {
 
-      var email = userData.email;
-      var password = userData.password;
+  var email = userData.email;
+  var password = userData.password;
+  console.log(email);
+  console.log(password);
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
 
-      
-
-      firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error) {
-         console.log(error.code);
-         console.log(error.message);
+        // console.log(error.code);
+        // console.log(error.message);
       });
 }
+
 module.exports = signupObj;

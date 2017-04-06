@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>todoapp</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/updated.css">
+</head>
+
+<body id="body">
+	<header>
+		<nav class="navbar-inverse">
+			<nav class="navbar navbar-inverse" style="background-color:#030140">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toogle="collapse" data-target="#mynavbar">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#home">to-do App</a>
+					</div>
+					<ul class="nav navbar-nav"></ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#login"><span class="glyphicon glyphicon-log-in"></span>Log-in</a></li>
+						<li><a href="#signin"><span class="glyphicon glyphicon-user"></span>Sign-in</a></li>
+					</ul>
+				</div>
+				</div>
+			</nav>
+		</nav>
+
+		<!-- home page -->
+		<div id="page-container"></div>
+		<div id="btn-blu">
+			<script id="home-page-template" type="text/x-handlebars-template">
+				<div id="home-page" class="page active">
+					<p>
+						This is HOME page
+					</p>
+				</div>
+			</script>
+
+			<!-- log-in page -->
+			<script id="login-page-template" type="text/x-handlebars-template">
+				<div id="login-page" class="page">
+					<form>
+						<div class="form-group">
+							<div>
+								<span class="headerlogin"><h1>Log-in Page</h1></span>
+								<span class="help-block"></span>
+							</div>
+
+							<div class="form-group">
+								<label for="email" class="col-sm-3 control-label"></label>
+								<div class="col-sm-12">
+									<input type="text" class="form-control-form " id="exampleInputEmaillog" placeholder="email">
+									<span class="help-block"></span>
+								</div>
+								<div>
+
+									<div class="form-group">
+										<label for="password" class="col-sm-3 control-label"></label>
+										<div class="col-sm-12">
+											<input type="password" id="loginPassword" placeholder="Password" class="form-control-form">
+											<span class="help-block"></span>
+										</div>
+									</div>
+
+
+									<!-- <input type="text" class="form-control-form " id="exampleInputEmaillog" placeholder="email">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control-form " id="loginPassword" placeholder="Password">
+							</div> -->
+									<div class="row">
+										<div class="col-md-6">
+											<div class="checkbox">
+												<label>		<input type="checkbox"> Remember me	</label>
+											</div>
+										</div>
+									</div>
+									<button type="button" id="fetchUser" class="btn-lgin">Login</button>
+									<span class="help-block"></span>
+					</form>
+					</div>
+					</div>
+					</div>
+				</div>
+		</div>
+		</div>
+		</script>
+
+		<!-- sign-in page -->
+		<script id="signin-page-template" type="text/x-handlebars-template">
+			<div id="signin-page" class="page">
+				<form>
+					<div class="form-group">
+						<div>
+							<span class="headerlogin"><center>Registration Page</center></span>
+							<span class="help-block"></span>
+						</div>
+						<div>
+							<p id="head"> </p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-3 control-label"></label>
+						<div class="col-sm-12">
+							<input type="email" id="email" placeholder="Email" class="form-control">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-sm-3 control-label"></label>
+						<div class="col-sm-12">
+							<input type="password" id="password" placeholder="Password" class="form-control">
+							<span class="help-block"></span>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label class="control-label col-sm-3"></label>
+						<div class="col-sm-9">
+							<div class="row">
+								<label class="radio-inline">
+											<div class="col-sm-4">
+													<span class="help-block"></span>
+										</div>
+									</label>
+							</div>
+						</div>
+					</div>
+					<span class="h6 signup-or-separator--text"></span>
+					<hr>
+					<span class="h6 signup-or-separator--text"></span>
+					<hr>
+			</div>
+			</div>
+			<div class="col-sm-9 col-sm-offset-5">
+				<button type="button" id="signinBtn" class="btn-lgin">Register</button>
+				<span class="help-block"></span>
+			</div>
+			</div>
+			</div>
+			</div>
+		</script>
+		<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="bower_components/handlebars/handlebars.min.js" type="text/javascript"></script>
+		<script src="js/app.js" type="text/javascript"></script>
+		<script src="js/todo.js"></script>
+</body>
+
+</html>
