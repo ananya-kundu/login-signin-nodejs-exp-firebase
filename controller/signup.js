@@ -9,7 +9,6 @@ var express = require('express'),
   router.post('/signup', function(req,res){
 
     try {
-			// console.log("pagal",req.body);
 			var email = req.body.email;
 			var password = req.body.password;
 
@@ -31,13 +30,11 @@ var express = require('express'),
 						res.send(errors);
 						return;
 					}
-            console.log("userData",userData);
          	  signupObj.saveData(userData);
            	res.send({"status":true,"message":"Successfully Signup"});
          }
      }
      catch (e){
-       console.log(e);
          res.send({"status":false,"message":"server error...!!!"});
      }
  	});

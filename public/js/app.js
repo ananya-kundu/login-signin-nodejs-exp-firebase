@@ -7,8 +7,8 @@ var utils = {
   // Finds a handlebars template by id. Populates it with the passed in data the generated html to div#order-page-container
   renderPageTemplate: function(templateId, data) {
     var newData = data || {};
-    console.log(newData);
-    console.log(templateId);
+    // console.log(newData);
+    // console.log(templateId);
     var templateScript = $(templateId).html();
     var template = Handlebars.compile(templateScript);
     // Empty the container and append new content
@@ -40,7 +40,7 @@ var router = {
   // An object of all the routes
   routes: {},
   init: function() {
-    console.log('router was created...');
+    // console.log('router was created...');
     this.bindEvents();
     // Manually trigger a hashchange to start the router.
     // This make the render function look for the route called "" (empty string) and call it"s function
@@ -55,10 +55,10 @@ var router = {
   render: function() {
     // Get the keyword from the url.
     var keyName = window.location.hash.split("/")[0];
-    console.log(keyName);
+    // console.log(keyName);
     // Grab anything after the hash
     var url = window.location.hash;
-    console.log(url);
+    // console.log(url);
     // Hide whatever page is currently shown.
     $("#page-container")
       .find(".active")

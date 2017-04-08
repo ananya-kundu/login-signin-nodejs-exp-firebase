@@ -1,72 +1,104 @@
-var User=function(email,password){
+$(document).ready(function() {
+  $.ajax({
+    url: "http://localhost:8081/session",
+    datatype: "json",
+    type: "GET",
+    success: function(data) {
+      if (data.session == true) {
+        loginSuccessPage();
+      }
+    }
+  });
 
-  this.email=email;
-  this.password=password;
+  var User = function(email, password) {
+    this.email = email;
+    this.password = password;
+  };
 
-};
-// value takes by user
-$(document).ready(function(){
-  $(document).on("click","#signinBtn",function(){
+  // value takes by user
+  $(document).ready(function() {
+    $(document).on("click", "#signinBtn", function() {
 
-      var email=$("#email").val();
-      console.log(email);
-      var password=$("#password").val();
-      console.log(password);
+      var email = $("#email").val();
+      var password = $("#password").val();
 
-      var userObj = new User(email,password);
-      console.log(userObj);
+      var userObj = new User(email, password);
 
       $.ajax({
-        url: "http://127.0.0.1:8081/api/signup",
-        datatype:"json",
-        type:"POST",
-        data:JSON.stringify(userObj),
-        contentType:'application/json',
-        success: function(data){
-          console.log(data);
-          console.log("this is result");
-          // alert("Registration Successfull..");
+        url: "http://localhost:8081/api/signup",
+        datatype: "json",
+        type: "POST",
+        data: JSON.stringify(userObj),
+        contentType: 'application/json',
+        success: function(data) {
           $('span').remove();
-          $("#signinBtn").after('<br><br><span>'+data.message+'</span>');
+          $("#signinBtn").after('<br><br><span>' + data.message + '</span>');
         }
       });
     });
-});
+  });
 
- $(document).ready(function(){
-  $(document).on("click","#fetchUser",function(){
-    var email=$("#exampleInputEmaillog").val();
-    console.log(email);
-    var password=$("#loginPassword").val();
-    console.log(password);
+  $(document).ready(function() {
+    $(document).on("click", "#fetchUser", function() {
+      var email = $("#exampleInputEmaillog").val();
+      var password = $("#loginPassword").val();
 
-    var userNewObj=new User(email,password);
-    // userNewObj["email"] = email;
-    // userNewObj["password"] = password;
-    console.log(userNewObj);
+      var userNewObj = new User(email, password);
 
-    $.ajax({
-       url: "http://127.0.0.1:8081/api/login",
-       datatype:"json",
-       type:"POST",
-        data:JSON.stringify(userNewObj),
-      // data : userNewObj,
-       contentType:'application/json',
-      //  var rslt = false;
+      $.ajax({
+        url: "http://localhost:8081/api/login",
+        datatype: "json",
+        type: "POST",
+        data: JSON.stringify(userNewObj),
+        contentType: 'application/json',
 
-      success: function(data){
-        console.log("this is result",data);
-        for(var i in data){
-            console.log(data[i]);
-            if(data[i].firstName==$("#exampleInputEmaillog").val() && data[i].password==$("#loginPassword").val() ){
-                  //  console.log("hiiiiiiiii.........");
-                   alert("Login Successfull..");
-              }
-              // else{
-              //     alert("log in unsccess..PLease provide valid user-name and password");
-              // }
+        success: function(data) {
+          if (data.status) {
+            loginSuccessPage();
+          } else {        
+             welcomePage();
+            console.log("login unsuccess");
           }
         }
+      });
+    });
+  });
+
+  function welcomePage() {
+    $.ajax({
+      url: "index.html",
+      datatype: "text",
+      type: "GET",
+      success: function(res) {
+        $("#body").html(res);
+      }
+    });
+
+  }
+
+  function loginSuccessPage() {
+    $.ajax({
+      url: "welcome.html",
+      datatype: "text",
+      type: "GET",
+      success: function(res) {
+        $("#body").html(res);
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    $(document).on("click", "#logOutId", function() {
+      $.ajax({
+        url: "http://localhost:8081/logout",
+        datatype: "json",
+        type: "GET",
+        success: function(data) {
+          if (data.status == false) {
+            welcomePage();
+          }
+        }
+      });
     });
   });
 });
